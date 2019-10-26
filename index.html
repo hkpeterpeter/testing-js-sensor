@@ -28,6 +28,7 @@ function updateFieldIfNotNull(fieldName, value, precision=10){
 }
 
 let lastMove = 0;
+let delayTime = 500; // 500 ms
 function handleMotion(event) {
  
   
@@ -36,7 +37,7 @@ function handleMotion(event) {
 
   if ( zval != null && zval > 2.0 ) {
 
-    if ( Date.now() - lastMove > 500) { // do nothing if last move was less than 500 ms
+    if ( Date.now() - lastMove > delayTime ) { // do nothing if last move was less than 500 ms
         let t = parseInt( document.getElementById('up_action_count').innerText );
         document.getElementById('up_action_count').innerText = (t+1);
         lastMove = Date.now();
