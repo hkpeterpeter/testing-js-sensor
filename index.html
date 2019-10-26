@@ -33,11 +33,6 @@ function handleMotion(event) {
     let t = parseInt( document.getElementById('up_action_count').innerText );
     document.getElementById('up_action_count').innerText = (t+1);
 
-    window.removeEventListener("devicemotion", handleMotion);
-
-    setTimeout(function(){  
-        window.addEventListener("devicemotion", handleMotion);
-    }, 500); // 0.5 second to add back the event listenser
   }
 
   
