@@ -16,6 +16,9 @@
 
 
         <script>
+
+let is_running = false;
+
 function updateFieldIfNotNull(fieldName, value, precision=10){
   if (value != null)
     document.getElementById(fieldName).innerHTML = value.toFixed(precision);
@@ -29,13 +32,14 @@ function handleMotion(event) {
   if ( zval != null && zval > 2.0 ) {
     let t = parseInt( document.getElementById('up_action_count').innerText );
     document.getElementById('up_action_count').innerText = (t+1);
+    is_running = false;
   }
 
   
 }
 
 
-let is_running = false;
+
 let demo_button = document.getElementById("start_demo");
 demo_button.onclick = function(e) {
   e.preventDefault();
