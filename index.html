@@ -32,7 +32,8 @@ function handleMotion(event) {
   if ( zval != null && zval > 2.0 ) {
     let t = parseInt( document.getElementById('up_action_count').innerText );
     document.getElementById('up_action_count').innerText = (t+1);
-    is_running = false;
+
+    window.removeEventListener("devicemotion", handleMotion);
   }
 
   
