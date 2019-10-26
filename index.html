@@ -10,8 +10,8 @@
 
         <h4>Accelerometer</h4>
         <ul>
-         <li>Z-axis: <span id="Accelerometer_z">0</span><span> m/s<sup>2</sup></span></li>
-         <li>Up count: <span id="up_action_count">0</span></li>
+         <li style="visibility: hidden;">Z-axis: <span id="Accelerometer_z">0</span><span> m/s<sup>2</sup></span></li>
+         <li>Up count: <span id="up_action_count" style="font-size:120px;">0</span></li>
         </ul>
 
 
@@ -34,6 +34,9 @@ function handleMotion(event) {
     document.getElementById('up_action_count').innerText = (t+1);
 
     window.removeEventListener("devicemotion", handleMotion);
+    setTimeout(function(){  
+        window.addEventListener("devicemotion", handleMotion);
+    }, 500); // 0.5 second to add back the event listenser
   }
 
   
