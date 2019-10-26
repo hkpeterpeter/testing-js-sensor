@@ -14,6 +14,8 @@
          <li>Up count: <span id="up_action_count" style="font-size:120px;">0</span></li>
         </ul>
 
+        <p>4:09</p>
+
 
         <script>
 
@@ -25,6 +27,7 @@ function updateFieldIfNotNull(fieldName, value, precision=10){
     document.getElementById(fieldName).innerHTML = value.toFixed(precision);
 }
 
+let lastMove = 0;
 function handleMotion(event) {
  
   
@@ -32,8 +35,12 @@ function handleMotion(event) {
   updateFieldIfNotNull('Accelerometer_z', zval);
 
   if ( zval != null && zval > 2.0 ) {
-    let t = parseInt( document.getElementById('up_action_count').innerText );
-    document.getElementById('up_action_count').innerText = (t+1);
+
+    if ( Date.noew() - lastMove > 40) { // do nothing if last move was less than 40 ms
+        let t = parseInt( document.getElementById('up_action_count').innerText );
+        document.getElementById('up_action_count').innerText = (t+1);
+        lastMove = Date.now();
+    }
   }
   
 }
