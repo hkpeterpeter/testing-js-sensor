@@ -10,7 +10,8 @@
 
         <h4>Accelerometer</h4>
         <ul>
-        <li>Z-axis: <span id="Accelerometer_z">0</span><span> m/s<sup>2</sup></span></li>
+         <li>Z-axis: <span id="Accelerometer_z">0</span><span> m/s<sup>2</sup></span></li>
+         <li>Up count: <span id="up_action_count">0</span></li>
         </ul>
 
 
@@ -22,8 +23,15 @@ function updateFieldIfNotNull(fieldName, value, precision=10){
 
 function handleMotion(event) {
  
-  updateFieldIfNotNull('Accelerometer_z', event.acceleration.z);
+  let zval = event.acceleration.z;
+  updateFieldIfNotNull('Accelerometer_z', zval);
 
+  if ( zval != null && zval > 2.0 ) {
+    let t = parseInt( document.getElementById('up_action_count') );
+    document.getElementById('up_action_count').innerText = (t+1);
+  }
+
+  
 }
 
 
