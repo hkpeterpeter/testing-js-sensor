@@ -18,6 +18,7 @@
         <script>
 
 let is_running = false;
+let prev_zval = 0;
 
 function updateFieldIfNotNull(fieldName, value, precision=10){
   if (value != null)
@@ -26,12 +27,15 @@ function updateFieldIfNotNull(fieldName, value, precision=10){
 
 function handleMotion(event) {
  
+  
   let zval = event.acceleration.z;
   updateFieldIfNotNull('Accelerometer_z', zval);
 
-  if ( zval != null && zval > 2.0 ) {
+  if ( zval != null && zval > 2.0 && prev_zval > zval ) {
     let t = parseInt( document.getElementById('up_action_count').innerText );
     document.getElementById('up_action_count').innerText = (t+1);
+
+    prev_zval = zval;
 
   }
 
